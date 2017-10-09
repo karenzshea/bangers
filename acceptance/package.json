@@ -1,0 +1,19 @@
+{
+  "name": "acceptance",
+  "version": "1.0.0",
+  "description": "smoke testin",
+  "main": "acceptance.test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "directions",
+    "requests"
+  ],
+  "author": "karenzshea",
+  "license": "ISC",
+  "dependencies": {
+    "@turf/helpers": "^5.0.0",
+    "request": "^2.83.0"
+  }
+}
