@@ -1,0 +1,422 @@
+{
+  "routes": [
+    {
+      "name": "kotti",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                13.418340682983398,
+                52.499895603198766
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                13.420722484588623,
+                52.498994272202694
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "hamburg-kiel",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                10.0140380859375,
+                53.54683559190011
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                10.1458740234375,
+                54.313318914476056
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "durch-bremen",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                8.749580383300781,
+                53.18731618267116
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                8.814468383789062,
+                53.07649632873805
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                8.887596130371094,
+                53.055040929798025
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                8.7850284576416,
+                53.053841484567485
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "flughafen-muenchen",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                11.57684326171875,
+                48.13355892629389
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                11.785154342651367,
+                48.35365390561497
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "berlin-dresden",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                13.63128662109375,
+                52.45433567512185
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                13.75762939453125,
+                51.03966692839972
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ka-mannheim-fra",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                8.37432861328125,
+                49.00364573861305
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                8.470458984375,
+                49.48597005571962
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                8.758678436279295,
+                50.101092660340484
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "wuppertal - koeln",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                7.145233154296875,
+                51.25740303187168
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                7.192955017089844,
+                51.26427801127602
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                7.020263671875,
+                50.95366890171828
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "durch-hanover",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.65972900390625,
+                52.40974954807318
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.736976623535156,
+                52.37434160350472
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.815597534179688,
+                52.30889844356715
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "durch-stuttgart",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.15212631225586,
+                48.75913110363646
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.205341339111328,
+                48.78752714699118
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.275894165039062,
+                48.81647230599555
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "muenchen - berlin",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                11.532211303710936,
+                48.19950665733754
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                13.383407592773438,
+                52.550888650159386
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "duesseldorf",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                6.7572784423828125,
+                51.21290566668017
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                6.7840576171875,
+                51.22021736655215
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                6.8080902099609375,
+                51.24837806090772
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                6.7667412757873535,
+                51.27927317717773
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
