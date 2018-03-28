@@ -1,4 +1,5 @@
 ```
+$ npm install
 $ export MAPBOX_API_TOKEN="a valid api token"
 $ node run.js api.mapbox.com ./my_test_routes.json
 ```
