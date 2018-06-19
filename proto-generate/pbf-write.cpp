@@ -16,13 +16,6 @@ int main() {
     bb.set_min_lat(38.83542884007305);
     bb.set_max_lat(40.81796653313175);
 
-    // route
-    Route rut;
-    rut.set_duration(14054);
-    rut.set_distance(369.377);
-    rut.set_allocated_bounding_box(new BoundingBox(bb));
-    Leg* leg1 = rut.add_legs();
-
     // directions response
     Directions miz;
     miz.set_uuid(500);
@@ -31,6 +24,13 @@ int main() {
     miz.set_units("miles");
     miz.set_language_code("en-US");
     miz.set_allocated_bounding_box(new BoundingBox(bb));
+    auto rut = miz.add_routes();
+
+    // route
+    rut->set_duration(14054);
+    rut->set_distance(369.377);
+    rut->set_allocated_bounding_box(new BoundingBox(bb));
+    Leg* leg1 = rut->add_legs();
 
     // leg
     leg1->set_summary("DC to NY");

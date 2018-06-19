@@ -15,5 +15,5 @@ int main() {
     route.ParseFromIstream(&InputFile);
     auto desc = route.GetDescriptor();
     std::cout << desc->field_count() << std::endl;
-    std::cout << route.waypoints_size() << std::endl;
+    std::cout << route.routes_size() << std::endl;
 }
