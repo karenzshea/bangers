@@ -11,10 +11,10 @@ int main() {
 
     // bounding box
     BoundingBox bb;
-    bb.set_max_lon(-73.9434814453125);
-    bb.set_min_lon(-77.1624755859375);
-    bb.set_min_lat(38.83542884007305);
-    bb.set_max_lat(40.81796653313175);
+    bb.set_max_lon(-73.990273);
+    bb.set_min_lon(-77.034004);
+    bb.set_min_lat(38.870129);
+    bb.set_max_lat(40.780312);
 
     // directions response
     Directions miz;
@@ -24,6 +24,12 @@ int main() {
     miz.set_units("miles");
     miz.set_language_code("en-US");
     miz.set_allocated_bounding_box(new BoundingBox(bb));
+    auto wp1 = miz.add_waypoints();
+    wp1->set_lat(38.899923675122196);
+    wp1->set_lon(-77.03400313854218);
+    auto wp2 = miz.add_waypoints();
+    wp2->set_lat(40.756567079102425);
+    wp2->set_lon(-73.99072587490082);
     auto rut = miz.add_routes();
 
     // route
@@ -33,7 +39,7 @@ int main() {
     Leg* leg1 = rut->add_legs();
 
     // leg
-    leg1->set_summary("DC to NY");
+    leg1->set_summary("I 95 North, New Jersey Turnpike");
     leg1->set_distance(369.377);
     leg1->set_duration(14054);
     leg1->set_allocated_bounding_box(new BoundingBox(bb));
@@ -45,7 +51,7 @@ int main() {
     const std::vector<std::vector<const char*>> street_names = {{ "H Street Northwest" }, { "15th Street Northwest" }, { "Raoul Wallenberg Place Southwest" }, { "Maine Avenue Southwest" }, {}, { "I 395 North", "Southwest Freeway" }, { "I 695" }, { "I 695" }, { "DC 295 North", "Anacostia Freeway" }, { "Kenilworth Avenue Freeway" }, {}, { "MD 295 North", "Baltimore-Washington Parkway" }, {}, { "I 895 North" }, { "Express Toll Lanes" }, { "I 95 North" }, { "I 295" }, {}, {}, { "I 295 North" }, { "New Jersey Turnpike" }, {}, {}, { "NJ 495" }, { "Lincoln Tunnel" }, {}, {}, { "West 40th Street" }, { "8th Avenue" }, { "West 41st Street" }, {} };
 
     // repeated maneuvers
-    const std::array<std::string, 31> maneuvers = {{ "Depart", "Turn", "Continue", "Turn", "Turn", "Merge", "Fork", "Turn", "Merge", "Continue", "Turn", "Merge", "Turn", "Merge", "Continue", "Continue", "Fork", "Turn", "Fork", "Merge", "Fork", "Turn", "Fork", "Merge", "Bear", "Turn", "Fork", "Turn", "Turn", "Turn", "Arrive"}};
+    const std::array<std::string, 31> maneuvers = {{ "depart", "turn", "continue", "turn", "turn", "merge", "fork", "turn", "merge", "continue", "turn", "merge", "turn", "merge", "continue", "continue", "fork", "turn", "fork", "merge", "fork", "turn", "fork", "merge", "bear", "turn", "fork", "turn", "turn", "turn", "arrive"}};
     const std::array<int, 31> bearings_before = {{0,178,108,177,177,94,90,147,60,2,102,82,85,331,320,4,52,5,98,23,39,64,67,112,45,60,25,25,23,104,119}};
     const std::array<int, 31> bearings_after = {{180,88,178,180,165,88,88,153,57,26,105,85,85,336,329,2,59,14,102,21,37,64,70,109,43,56,32,30,26,111,111}};
     const std::array<std::string, 31> instructions = {{ "Drive east on H Street Northwest.", "Turn right onto 15th Street Northwest.", "Continue on Raoul Wallenberg Place Southwest.", "Turn left onto Maine Avenue Southwest.", "Take the I 395 North ramp on the left.", "Merge onto I 395 North\\/Southwest Freeway.", "Keep left to take I 695.", "Take the DC 295 North exit on the right toward US 50.", "Merge onto DC 295 North\\/Anacostia Freeway.", "Continue on Kenilworth Avenue Freeway.", "Take the Baltimore Washington Parkway exit on the left toward I 95.", "Merge onto MD 295 North\\/Baltimore-Washington Parkway.", "Take the I 895 North exit on the right toward Baltimore Harbor Tunnel Thruway.", "Merge onto I 895 North.", "Continue on Express Toll Lanes.", "Continue on I 95 North.", "Keep right to take I 295 toward Delaware Memorial Bridge\\/New Jersey\\/Newport.", "Take the US 13 North exit on the left toward Wilmington.", "Keep right to take I 295 North toward NJTP\\/Delware Memorial Bridge\\/New York-New Jersey.", "Merge onto I 295 North.", "Keep left to take New Jersey Turnpike.", "Take exit 16E on the right.", "Keep right at the fork.", "Merge onto NJ 495.", "Bear right onto Lincoln Tunnel.", "Take the exit on the right toward Dyer Avenue.", "Keep left toward NY 9A\\/42nd Street\\/Uptown\\/Theater District.", "Turn right onto West 40th Street.", "Turn left onto 8th Avenue.", "Turn left onto West 41st Street.", "Your destination is on the left." }};
@@ -91,8 +97,6 @@ int main() {
         }
 
         step->set_travel_mode("drive");
-        step->set_travel_mode("car");
-        step->set_travel_mode("right");
 
         // MANEUVERS
         // =====================================================
