@@ -56,10 +56,12 @@ const analyze = (response) => {
         name: response.name,
         weirdos: [], // values that don't end in 0 or 5
         num_unknowns: 0,
-        unknown_streak: 0,
+        max_unknown_streak: 0,
         total_maxspeeds: 0,
         pct_unknowns: 0,
         num_nones: 0,
+        pct_nones: 0,
+        num_flickers: 0,
         err: ''
     };
     if (!response.body.routes) {
@@ -83,6 +85,7 @@ const analyze = (response) => {
                 result.num_unknowns++;
                 streak++;
             } else {
+                if (streak >= 1 && streak <= 3) {result.num_flickers++}
                 streak = 0;
             }
 
@@ -95,9 +98,10 @@ const analyze = (response) => {
             if (current_ms.none) {
                 result.num_nones++;
             }
-            result.unknown_streak = Math.max(result.unknown_streak, streak);
+            result.max_unknown_streak = Math.max(result.max_unknown_streak, streak);
         }
     });
+    result.pct_nones = Math.ceil((result.num_nones / result.total_maxspeeds)* 100);
     result.pct_unknowns = Math.ceil((result.num_unknowns / result.total_maxspeeds) * 100);
     console.log(result);
     return result;
