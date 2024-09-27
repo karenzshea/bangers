@@ -417,6 +417,137 @@
           }
         ]
       }
+    },
+      {
+      "name": "hildesheim - berlin",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.950072,
+                52.150015
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                13.419763,
+                52.500371
+              ]
+            }
+          }
+        ]
+      }
+    },
+      {
+          "name": "werlte - hoxter (rural)",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                7.569915,
+                52.916751
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                9.470679,
+                51.949738
+              ]
+            }
+          }
+        ]
+      }
+    },
+      {
+          "name": "frankfurt - muenchen",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+               8.679101,
+               50.108419
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                11.566369,
+                48.136326
+              ]
+            }
+          }
+        ]
+      }
+    },
+      {
+          "name": "karlsruhe - wolfsburg - rostock",
+      "features": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+               8.377866,
+               49.020148
+              ]
+            }
+          },
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                10.80092040962964,
+                52.41755657439322
+              ]
+            }
+          },
+             {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                12.115554,
+                54.083173
+              ]
+            }
+          }
+        ]
+      }
     }
   ]
 }
