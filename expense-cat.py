@@ -105,7 +105,12 @@ def generate_report(file_path, provider, vendor_manager):
         generate_ing_report(file_path, vendor_manager)
 
 def normalize_currency_value(string):
-    return string.replace(',', '.')
+    total = 0.0
+    match = re.search(r'((\d+[\.]?){1,}),(?P<cent>\d{2})', string)
+    if match:
+        normal = match.group(1).replace('.', '') + '.' + match.group('cent')
+        total += float(normal)
+    return total
 
 def generate_ing_report(file_path, vendor_manager):
     VENDOR = 'Auftraggeber/Empfänger'
@@ -127,9 +132,9 @@ def generate_ing_report(file_path, vendor_manager):
         for row in filereader:
             vendor_value = row[VENDOR]
             # vendor category was cached
-            if category := vendor_manager.category_for_vendor(vendor_value):
+            if category_key := vendor_manager.category_for_vendor(vendor_value):
                 # add expense to corresponding category
-                report[category] += float(row['Betrag'].replace(',', '.'))
+                report[category_key] += float(normalize_currency_value(row['Betrag']))
             # vendor unknown, ask user for category
             else:
                 print(f'[{row["Buchung"]}] {row[VENDOR]}: {row["Betrag"]}')
