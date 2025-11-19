@@ -10,8 +10,13 @@ from tempfile import NamedTemporaryFile
 
 """
 To-do
-- allow user to edit vendor name when saving
+- show more details option
+- store booking for category for display with report
 - gracefully handle exiting early
+- add a [ignore] option, that ignores the booking entirely
+
+Bug
+- vendors that should only be saved for the current session are being serialized the next time a write to cache happens
 
 """
 
@@ -148,17 +153,21 @@ def generate_ing_report(file_path, vendor_manager):
                 while save_vendor != 'y' and save_vendor != 'n':
                     save_vendor = input("Save vendor to category? (y/n) ")
 
-                save_vendor = True if save_vendor == 'y' else False
+                save_vendor = True if save_vendor.lower() == 'y' else False
 
                 if save_vendor:
                     cache_vendor = None
                     while cache_vendor != 'y' and cache_vendor != 'n':
                         cache_vendor = input("Cache vendor to file? (y/n) ")
-                    cache_vendor = True if cache_vendor == 'y' else False
-                    # TODO allow user to edit name saved
+                    cache_vendor = True if cache_vendor.lower() == 'y' else False
+                    cache_value = vendor_value
+                    if cache_vendor:
+                        print('{}'.format(vendor_value))
+                        while cache_value != '':
+                            cache_value = input('Enter vendor value cache: ')
 
                     vendor_manager.add_vendor(
-                            vendor_value,
+                            cache_value,
                             vendor_manager.categories[cat_index],
                             cache_vendor
                     )
