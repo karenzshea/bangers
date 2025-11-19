@@ -90,8 +90,8 @@ def main():
                         description='Generates a categorized summary of expense CSVs',
                         epilog=':)')
     parser.add_argument('input_file_path', help='File path to the CSV to parse')
-    parser.add_argument('provider', choices='ing')
-    parser.add_argument('-c', '--vendors_file', required=False)
+    parser.add_argument('provider', choices=['ing'])
+    parser.add_argument('-v', '--vendors_file', required=False)
 
     args = parser.parse_args()
 
