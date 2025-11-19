@@ -32,6 +32,7 @@ class VendorManager:
     def __init__(self, _cache_file):
         self.cache_file = _cache_file
         self.categories = []
+        # {'vendor_name': {category_index: int, cache: bool}}
         self.vendors = {}
         self.load_from_cache()
 
@@ -49,6 +50,7 @@ class VendorManager:
     def write_to_cache(self):
         success = False
         with NamedTemporaryFile('w', delete=False, dir=path.dirname(self.cache_file)) as tmpfile:
+            # header
             tmpfile.write(';'.join(['category','vendors']) + '\n')
 
             for key, values in self.dict_repr().items():
@@ -59,15 +61,19 @@ class VendorManager:
 
     def dict_repr(self):
         data = {category: [] for category in self.categories}
-        for vendor, cat_index in self.vendors.items():
-            data[self.categories[cat_index]].append(vendor)
+        for vendor, info in self.vendors.items():
+            breakpoint()
+            if info['cache'] == 'True':
+                data[self.categories[info['category_index']]].append(vendor)
         return data
 
     def __repr__(self):
         return str(self.dict_repr())
 
     def add_vendor(self, vendor, category, save_to_cache=True):
-        self.vendors[vendor.lower()] = self.categories.index(category)
+        if not vendor:
+            return
+        self.vendors[vendor.lower()] = {'category_index': self.categories.index(category), 'cache': str(save_to_cache)}
         if save_to_cache:
             self.write_to_cache();
 
@@ -76,7 +82,8 @@ class VendorManager:
         """
         Returns the category of a given vendor, if found
         """
-        for lhs, index in self.vendors.items():
+        for lhs, info in self.vendors.items():
+            index = info['category_index']
             # simple equality check
             if lhs.lower() == rhs.lower():
                 return self.categories[index]
@@ -163,8 +170,7 @@ def generate_ing_report(file_path, vendor_manager):
                     cache_value = vendor_value
                     if cache_vendor:
                         print('{}'.format(vendor_value))
-                        while cache_value != '':
-                            cache_value = input('Enter vendor value cache: ')
+                        cache_value = input('Enter vendor value cache: ')
 
                     vendor_manager.add_vendor(
                             cache_value,
