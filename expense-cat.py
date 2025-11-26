@@ -6,6 +6,7 @@ from difflib import SequenceMatcher
 from enum import auto, Enum
 from os import path
 from tempfile import NamedTemporaryFile
+from pathlib import Path
 
 
 """
@@ -15,13 +16,11 @@ To-do
 - gracefully handle exiting early
 - add a [ignore] option, that ignores the booking entirely
 
-Bug
-- vendors that should only be saved for the current session are being serialized the next time a write to cache happens
-
 """
 
 class Provider(Enum):
     ing = auto()
+    n26 = auto()
 
 
 def parse_vendors_file(file_path):
@@ -35,16 +34,23 @@ class VendorManager:
         self.vendors = {}
         self.load_from_cache()
 
+    def copy_categories(self, categories):
+        self.categories = categories
+
     def load_from_cache(self):
-        with open(self.cache_file, 'r') as file:
-            reader = csv.DictReader(file, delimiter=';')
-            categories_dict = {}
-            for line in reader:
-                cat_index = len(self.categories)
-                self.categories.append(line['category'])
-                if vendors := line['vendors']:
-                    for vendor in vendors.strip(',').split(','):
-                        self.vendors[vendor] = cat_index
+        try:
+            with open(self.cache_file, 'r') as file:
+                reader = csv.DictReader(file, delimiter=';')
+                categories_dict = {}
+                for line in reader:
+                    cat_index = len(self.categories)
+                    self.categories.append(line['category'])
+                    if vendors := line['vendors']:
+                        for vendor in vendors.strip(',').split(','):
+                            self.vendors[vendor] = cat_index
+        except FileNotFoundError:
+            p = Path(self.cache_file)
+            p.touch()
 
     def write_to_cache(self):
         success = False
@@ -89,18 +95,24 @@ class VendorManager:
         return None
 
 
+DEBUG = False
+
 def main():
     parser = argparse.ArgumentParser(
                         prog='Expense-cat',
                         description='Generates a categorized summary of expense CSVs',
                         epilog=':)')
     parser.add_argument('input_file_path', help='File path to the CSV to parse')
-    parser.add_argument('provider', choices=['ing'])
-    parser.add_argument('-v', '--vendors_file', required=False)
+    parser.add_argument('provider', choices=['ing', 'n26'])
+    parser.add_argument('categories_file', help='File path to expense categories CSV')
+    parser.add_argument('--debug', required=False)
 
     args = parser.parse_args()
 
-    vendor_manager = VendorManager(args.vendors_file)
+    if args.debug:
+        DEBUG = args.debug
+
+    vendor_manager = VendorManager(args.categories_file)
 
     generate_report(args.input_file_path, Provider[args.provider], vendor_manager)
 
@@ -108,6 +120,8 @@ def main():
 def generate_report(file_path, provider, vendor_manager):
     if provider == Provider.ing:
         generate_ing_report(file_path, vendor_manager)
+    else:
+        raise NotImplementedError(f'Provider {provider} not yet implemented')
 
 def normalize_currency_value(string):
     total = 0.0
@@ -120,6 +134,8 @@ def normalize_currency_value(string):
 def generate_ing_report(file_path, vendor_manager):
     VENDOR = 'Auftraggeber/Empfänger'
 
+    session_vendor_manager = VendorManager("temp.vendor_cache.txt")
+    session_vendor_manager.copy_categories(vendor_manager.categories)
     total = 0
     with open(file_path, 'r', encoding='ISO-8859-1') as file:
         for i in range(0, 13):
@@ -138,7 +154,8 @@ def generate_ing_report(file_path, vendor_manager):
             vendor_value = row[VENDOR]
             # vendor category was cached
             if category_key := vendor_manager.category_for_vendor(vendor_value):
-                # add expense to corresponding category
+                report[category_key] += float(normalize_currency_value(row['Betrag']))
+            elif category_key := session_vendor_manager.category_for_vendor(vendor_value):
                 report[category_key] += float(normalize_currency_value(row['Betrag']))
             # vendor unknown, ask user for category
             else:
@@ -163,14 +180,22 @@ def generate_ing_report(file_path, vendor_manager):
                     cache_value = vendor_value
                     if cache_vendor:
                         print('{}'.format(vendor_value))
-                        while cache_value != '':
-                            cache_value = input('Enter vendor value cache: ')
+                        cache_value = input('Enter vendor value cache: ')
+                        vendor_manager.add_vendor(
+                                cache_value,
+                                vendor_manager.categories[cat_index],
+                                cache_vendor
+                        )
+                    else:
+                        session_vendor_manager.add_vendor(
+                                cache_value,
+                                vendor_manager.categories[cat_index],
+                                cache_vendor
+                        )
 
-                    vendor_manager.add_vendor(
-                            cache_value,
-                            vendor_manager.categories[cat_index],
-                            cache_vendor
-                    )
+
+        if DEBUG:
+            session_vendor_manager.write_to_cache()
 
         print(report)
 
