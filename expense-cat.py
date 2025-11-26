@@ -15,6 +15,7 @@ To-do
 - store booking for category for display with report
 - gracefully handle exiting early
 - add a [ignore] option, that ignores the booking entirely
+- handle n26
 
 """
 
@@ -76,7 +77,6 @@ class VendorManager:
         self.vendors[vendor.lower()] = self.categories.index(category)
         if save_to_cache:
             self.write_to_cache();
-
 
     def category_for_vendor(self, rhs):
         """
@@ -197,7 +197,10 @@ def generate_ing_report(file_path, vendor_manager):
         if DEBUG:
             session_vendor_manager.write_to_cache()
 
-        print(report)
+        print_ing_report(report)
+
+def print_ing_report(data):
+    pass
 
 
 
